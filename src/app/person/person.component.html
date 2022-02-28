@@ -1,0 +1,59 @@
+<p-fieldset>
+  <p-header>Person</p-header>
+  <div class="p-grid p-align-start vertical-container">
+    <div class="p-col-12">
+      <label for="in_age"><h4>Age:</h4></label>
+      <input id="in_age" [(ngModel)]="activePerson.age" type="number" style="width:100%">
+    </div>
+    <div class="p-col-12">
+        <h4>Person Type:</h4>
+        <!-- <span
+          *ngIf="activePerson.typePersonType">{{activePerson.typePersonType.Person_Type_ID}}-{{activePerson.typePersonType.Description}}</span>
+           -->
+        <p-dropdown placeholder="Select One" [options]="allowedValues.person__types" [(ngModel)]="activePerson.typePersonType"
+          optionLabel="Description" [filter]="true" dataKey="Person_Type_ID" showClear="true"></p-dropdown>
+      </div>
+      <div class="p-col-12">
+        <h4>Gender:</h4>
+        <!-- <span
+          *ngIf="activePerson.genderPersonGender">{{activePerson.genderPersonGender.Person_Gender_ID}}-{{activePerson.genderPersonGender.Description}}</span> -->
+        <p-dropdown placeholder="Select One" [options]="allowedValues.person__genders" [(ngModel)]="activePerson.genderPersonGender"
+          optionLabel="Description" [filter]="true" dataKey="Person_Gender_ID" showClear="true"></p-dropdown>
+      </div>
+      <div class="p-col-12">
+        <h4>Ethnicity:</h4>
+        <!-- <span
+          *ngIf="activePerson.ethnPersonEthn">{{activePerson.ethnPersonEthn.Person_Ethn_ID}}-{{activePerson.ethnPersonEthn.Description}}</span> -->
+        <p-dropdown placeholder="Select One" [options]="allowedValues.person__ethnicitys" [(ngModel)]="activePerson.ethnPersonEthn"
+          optionLabel="Description" [filter]="true" dataKey="Person_Ethn_ID" showClear="true"></p-dropdown>
+      </div>
+      <div class="p-col-12">
+        <h4>Alcohol:</h4>
+        <!-- <span
+          *ngIf="activePerson.alchPersonAlcohol">{{activePerson.alchPersonAlcohol.Person_Alcohol_ID}}-{{activePerson.alchPersonAlcohol.Description}}</span> -->
+        <p-dropdown placeholder="Select One" [options]="allowedValues.person__alcohols" [(ngModel)]="activePerson.alchPersonAlcohol"
+          optionLabel="Description" [filter]="true" dataKey="Person_Alcohol_ID" showClear="true"></p-dropdown>
+      </div>
+      <div class="p-col-12">
+        <h4>Drug:</h4>
+        <!-- <span
+          *ngIf="activePerson.drugPersonDrug">{{activePerson.drugPersonDrug.Person_Drug_ID}}-{{activePerson.drugPersonDrug.Description}}</span> -->
+        <p-dropdown placeholder="Select One" [options]="allowedValues.person__drugs" [(ngModel)]="activePerson.drugPersonDrug"
+          optionLabel="Description" [filter]="true" dataKey="Person_Drug_ID" showClear="true"></p-dropdown>
+      </div>
+      <div class="p-col-12">
+        <h4>Injury:</h4>
+        <!-- <span
+          *ngIf="activePerson.injuryPersonInjury">{{activePerson.injuryPersonInjury.Person_Injury_ID}}-{{activePerson.injuryPersonInjury.Description}}</span> -->
+        <p-dropdown placeholder="Select One" [options]="allowedValues.person__injurys" [(ngModel)]="activePerson.injuryPersonInjury"
+          optionLabel="Description" [filter]="true" dataKey="Person_Injury_ID" showClear="true"></p-dropdown>
+      </div>
+      <div class="p-col-12">
+        <h4>Helmet:</h4>
+        <!-- <span
+          *ngIf="activePerson.hlmtPersonHelmet">{{activePerson.hlmtPersonHelmet.Person_Helmet_ID}}-{{activePerson.hlmtPersonHelmet.Description}}</span> -->
+        <p-dropdown placeholder="Select One" [options]="allowedValues.person__helmets" [(ngModel)]="activePerson.hlmtPersonHelmet"
+          optionLabel="Description" [filter]="true" dataKey="Person_Helmet_ID" showClear="true"></p-dropdown>
+      </div>
+  </div>
+</p-fieldset>

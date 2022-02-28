@@ -1,0 +1,85 @@
+<!-- FILTERS -->
+
+<!-- Filters Scrollable Panel -->
+
+
+<div *ngFor="let filter of special_filters">
+  <div class="ui-md-12 ui-lg-12">
+    <app-filter-range-component [(filter_element)]="filter" [table_name]="filter['TABLE_NAME']">
+    </app-filter-range-component>
+  </div>
+</div>
+
+
+<p-fieldset [style]="{'margin-top':'1em'}" legend="Frequently Used" [toggleable]="true">
+  <div *ngFor="let frequent of frequent_filters">
+    <div class="ui-md-12 ui-lg-12">
+      <app-filter-range-component [(filter_element)]="frequent['DATA']" [table_name]="frequent['TABLE']">
+      </app-filter-range-component>
+    </div>
+  </div>
+</p-fieldset>
+
+
+<p-fieldset [style]="{'margin-top':'1em'}" legend="Crash Report" [toggleable]="true" collapsed="true">
+  <div *ngFor="let filter_e of crash">
+
+    <div class="ui-md-12 ui-lg-12">
+      <app-filter-range-component [(filter_element)]="filter_e" table_name="crash"></app-filter-range-component>
+    </div>
+
+  </div>
+</p-fieldset>
+
+<p-fieldset [style]="{'margin-top':'1em'}" legend="From PBCAT" [toggleable]="true" collapsed="true">
+  <div *ngFor="let filter_e of crash_type">
+
+    <div class="ui-md-12 ui-lg-12">
+      <app-filter-range-component [(filter_element)]="filter_e" table_name="crash_type">
+      </app-filter-range-component>
+    </div>
+
+  </div>
+</p-fieldset>
+
+
+<p-fieldset [style]="{'margin-top':'1em'}" legend="Location Analysis" [toggleable]="true" collapsed="true">
+  <div *ngFor="let filter_e of gis_analysis">
+
+    <div class="ui-md-12 ui-lg-12">
+      <app-filter-range-component [(filter_element)]="filter_e" table_name="gis_analysis">
+      </app-filter-range-component>
+    </div>
+
+  </div>
+</p-fieldset>
+
+<p-fieldset [style]="{'margin-top':'1em'}" legend="People Involved" [toggleable]="true" collapsed="true">
+  <div *ngFor="let filter_e of person">
+
+    <div class="ui-md-12 ui-lg-12">
+      <app-filter-range-component [(filter_element)]="filter_e" table_name="person"></app-filter-range-component>
+    </div>
+  </div>
+
+</p-fieldset>
+
+<p-fieldset [style]="{'margin-top':'1em'}" legend="Units Involved" [toggleable]="true" collapsed="true">
+  <div *ngFor="let filter_e of unit">
+
+    <div class="ui-md-12 ui-lg-12">
+      <app-filter-range-component [(filter_element)]="filter_e" table_name="unit"></app-filter-range-component>
+    </div>
+
+  </div>
+</p-fieldset>
+
+
+<!-- Buttons -->
+<div class="p-g-12 ui-lg-12">
+  <!-- Delete -->
+  <div class="p-g-6 p-lg-6">
+    <button pButton type="button" label="Clear Filters" class="ui-button-rounded ui-button-danger"
+      (click)="deleteFilters()"></button>
+  </div>
+</div>

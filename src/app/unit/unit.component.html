@@ -1,0 +1,34 @@
+<p-fieldset>
+  <p-header>Unit</p-header>
+  <div class="p-grid p-align-start vertical-container">
+
+    <div class="p-col-12">
+      <h4>Hit and Run:</h4>
+      
+      <p-dropdown placeholder="Select One" [options]="allowedValues.yes_no" [(ngModel)]="activeUnit.hit_run" showClear="true">
+      </p-dropdown>
+    </div>
+
+  </div>
+  <div class="p-col-12">
+    <h4>Body:</h4>
+    
+    <p-dropdown placeholder="Select One" [options]="allowedValues.vehicle__bodys" [(ngModel)]="activeUnit.vehBodyVehBody"
+      optionLabel="description" [filter]="true" dataKey="veh_body_id" showClear="true"></p-dropdown>
+  </div>
+  <div class="p-col-12">
+    <h4>Description:</h4>
+   
+    <p-dropdown placeholder="Select One" [options]="allowedValues.vehicle__descriptions" [(ngModel)]="activeUnit.descDescription"
+      optionLabel="description" [filter]="true" dataKey="description_id" showClear="true"></p-dropdown>
+  </div>
+  <div class="p-col-12">
+    <h4>Contributing Factors:</h4><p-multiSelect [options]="allowedValues.contributing_factorss" [(ngModel)]="activeUnit.contributingFactorss"
+      optionLabel="description" [filter]="true" dataKey="factor_id" showClear="true"></p-multiSelect>
+  </div>
+  <div class="p-col-12">
+    <h4>Defects:</h4>  <p-multiSelect [options]="allowedValues.vehicle_defectss" [(ngModel)]="activeUnit.vehicleDefectss"
+      optionLabel="description" [filter]="true" dataKey="defect_id" showClear="true"></p-multiSelect>
+  </div>
+
+</p-fieldset>

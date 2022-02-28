@@ -1,0 +1,18 @@
+<p-fieldset>
+  <p-header>Charges</p-header>
+  <div class="p-grid p-align-start vertical-container">
+
+    <div class="p-col-12">
+      <label ><h4>Unit Number Charged:</h4></label>
+      <input [(ngModel)]="activeCharge.units_num" type="number" style="width:100%">
+    </div>
+    <div class="p-col-12">
+      <label ><h4>Person Number Charged:</h4></label>
+      <input  [(ngModel)]="activeCharge.person_num" type="number" style="width:100%">
+    </div>
+    <div class="p-col-12">
+      <label ><h4>Charge Description:</h4></label>
+      <input  [(ngModel)]="activeCharge.charge" type="text" style="width:100%">
+    </div>
+  </div>
+</p-fieldset>

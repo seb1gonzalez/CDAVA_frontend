@@ -1,0 +1,463 @@
+<div style="width: 100%;">
+  <div *ngIf="selectedCrash">
+
+    <p-dialog id="saveDialog" header="Verify Edits" [(visible)]="showSave">
+      <ngx-json-viewer [json]="diffJson"></ngx-json-viewer>
+      <p-footer>
+        <button type="button" pButton icon="pi pi-times" label="Do Nothing" (click)="cancelSave()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Save to DB" (click)="finalSave()"></button>
+      </p-footer>
+    </p-dialog>
+    <div class="p-grid p-align-start vertical-container">
+      <div class="ui-g-12 ui-md-6 ui-lg-4">
+        <button type="text" (click)="commitChanges()" pButton icon="pi pi-check" label="Commit Changes"
+          *ngIf="currentUser.group =='RW'"></button>
+      </div>
+    </div>
+
+    <p-tabView>
+
+      <p-tabPanel header="[B]asic Information">
+
+        <!--  + Default/ Main view -->
+        <div class="p-col-12">
+          <div class="p-grid">
+            <div class="p-col-12">
+              <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <h4><label>Crash ID</label></h4>
+                <h4>{{selectedCrash.crash_id}}</h4>
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <label for="in_date">
+                  <h4>Crash Date</h4>
+                </label>
+                <p-calendar id="in_date" [(ngModel)]="crash_date" showTime="true" hourFormat="24"
+                  (change)="dateUpdated()">
+                </p-calendar>
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <h4><label>Number of Pedestrians</label></h4>
+                <h4>{{numberOfPedestrians}}</h4>
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <h4><label>Number of Bicyclist</label></h4>
+                <h4>{{numberOfBicyclists}}</h4>
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-2">
+                <h4><label>Hit and Run</label></h4>
+                <h4>{{hitAndRun}}</h4>
+              </div>
+            </div>
+
+            <!--  + LOCATION -->
+            <div class="p-col-12">
+              <p-fieldset legend="Location" [toggleable]="true" collapsed="true">
+                <div class="p-grid p-align-start vertical-container">
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <label for="in_street_number_1">
+                      <h4>Route/Street Number</h4>
+                    </label>
+                    <input id="in_street_number_1" [(ngModel)]="selectedCrash.street_num_1" type="text"
+                      style="width:100%">
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <label for="in_street_name_1">
+                      <h4>Route/Street Name </h4>
+                    </label>
+                    <input id="in_street_name_1" [(ngModel)]="selectedCrash.street_name_1" type="text"
+                      style="width:100%">
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <label for="in_street_number_2">
+                      <h4>Reference Street Number</h4>
+                    </label>
+                    <input id="in_street_number_2" [(ngModel)]="selectedCrash.street_num_2" type="text"
+                      style="width:100%">
+                  </div>
+
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <label for="in_street_name_2">
+                      <h4>Reference Street</h4>
+                    </label>
+                    <input id="in_street_name_2" [(ngModel)]="selectedCrash.street_name_2" type="text"
+                      style="width:100%">
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>City:</h4>
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.citys"
+                      [(ngModel)]="selectedCrash.cityCity" optionLabel="description" [filter]="true" dataKey="city_id"
+                      showClear="true"></p-dropdown>
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>County:</h4>
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.countys"
+                      [(ngModel)]="selectedCrash.countyCounty" optionLabel="description" [filter]="true"
+                      dataKey="county_id" showClear="true">
+                    </p-dropdown>
+                  </div>
+                </div>
+              </p-fieldset>
+            </div>
+            <!-- + OTHER INFO -->
+            <div class="p-col-12">
+              <p-fieldset legend="Other Info" [toggleable]="true" collapsed="true">
+                <div class="p-grid p-align-start vertical-container">
+
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>Type of Area:</h4>
+                    <!-- <span
+                    *ngIf="selectedCrash.rural_urban_typeRural_urban_type">{{selectedCrash.rural_urban_typeRural_urban_type.rural_urban_type_id}}-{{selectedCrash.rural_urban_typeRural_urban_type.description}}</span> -->
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.rural_urban_types"
+                      [(ngModel)]="selectedCrash.rural_urban_typeRural_urban_type" optionLabel="description"
+                      dataKey="rural_urban_type_id" showClear="true">
+                    </p-dropdown>
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <label for="in_crash_speed">
+                      <h4>Speed Limit</h4>
+                    </label>
+                    <input id="in_crash_speed" [(ngModel)]="selectedCrash.crash_speed" type="number" style="width:100%">
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <label for="in_lane_num">
+                      <h4>Number of Through Lanes</h4>
+                    </label>
+                    <input id="in_lane_num" [(ngModel)]="selectedCrash.lane_num" type="number" style="width:100%">
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>Weather Conditions:</h4>
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.weathers"
+                      [(ngModel)]="selectedCrash.weatherWeather" optionLabel="Description" [filter]="true"
+                      dataKey="Weather_ID" showClear="true">
+                    </p-dropdown>
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>Surface Conditions:</h4>
+                    <!-- <span
+                    *ngIf="selectedCrash.surfCondSurfCond">{{selectedCrash.surfCondSurfCond.Surf_Cond_ID}}-{{selectedCrash.surfCondSurfCond.Description}}</span> -->
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.surface__conditions"
+                      [(ngModel)]="selectedCrash.surfCondSurfCond" optionLabel="Description" [filter]="true"
+                      dataKey="Surf_Cond_ID" showClear="true"></p-dropdown>
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>Roadway Surface Type:</h4>
+                    <!-- <span
+                    *ngIf="selectedCrash.surfTypeSurfaceType">{{selectedCrash.surfTypeSurfaceType.Surface_Type_ID}}-{{selectedCrash.surfTypeSurfaceType.Description}}</span> -->
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.surface__types"
+                      [(ngModel)]="selectedCrash.surfTypeSurfaceType" optionLabel="Description" [filter]="true"
+                      dataKey="Surface_Type_ID" showClear="true"></p-dropdown>
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>Light Conditions:</h4>
+                    <!-- <span
+                    *ngIf="selectedCrash.lightCondCondition">{{selectedCrash.lightCondCondition.condition_id}}-{{selectedCrash.lightCondCondition.description}}</span> -->
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.light_conditionss"
+                      [(ngModel)]="selectedCrash.lightCondCondition" optionLabel="description" [filter]="true"
+                      dataKey="condition_id" showClear="true"></p-dropdown>
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>Roadway Classification:</h4>
+                    <!-- <span
+                    *ngIf="selectedCrash.rdwyClassClassification">{{selectedCrash.rdwyClassClassification.classification_id}}-{{selectedCrash.rdwyClassClassification.description}}</span> -->
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.rdwy_classifications"
+                      [(ngModel)]="selectedCrash.rdwyClassClassification" optionLabel="on_off_system" [filter]="true"
+                      dataKey="classification_id" showClear="true"></p-dropdown>
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>Roadway Configuration</h4>
+                    <!-- <span
+                    *ngIf="selectedCrash.rdwyTypeRdwyType">{{selectedCrash.rdwyTypeRdwyType.Rdwy_type_id}}-{{selectedCrash.rdwyTypeRdwyType.description}}</span> -->
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.rdwy_types"
+                      [(ngModel)]="selectedCrash.rdwyTypeRdwyType" optionLabel="description" [filter]="true"
+                      dataKey="Rdwy_type_id" showClear="true"></p-dropdown>
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>Roadway Alignment</h4>
+                    <!-- <span
+                    *ngIf="selectedCrash.rdwyAlignAlignment">{{selectedCrash.rdwyAlignAlignment.alignment_id}}-{{selectedCrash.rdwyAlignAlignment.description}}</span> -->
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.rdwy_alignments"
+                      [(ngModel)]="selectedCrash.rdwyAlgnAlignment" optionLabel="description" [filter]="true"
+                      dataKey="alignment_id" showClear="true"></p-dropdown>
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>Traffic Control:</h4>
+                    <!-- <span
+                    *ngIf="selectedCrash.traffCntrlControl">{{selectedCrash.traffCntrlControl.control_id}}-{{selectedCrash.traffCntrlControl.description}}</span> -->
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.traffic__controls"
+                      [(ngModel)]="selectedCrash.traffCntrlControl" optionLabel="description" [filter]="true"
+                      dataKey="control_id" showClear="true"></p-dropdown>
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>School Zone:</h4>
+                    <!-- <span *ngIf="selectedCrash.school_zone">{{selectedCrash.school_zone}}</span> -->
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.yes_no"
+                      [(ngModel)]="selectedCrash.school_zone" showClear="true"></p-dropdown>
+                  </div>
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>Marked Crosswalk:</h4>
+                    <!-- <span
+                      *ngIf="selectedCrash.traffCntrlControl">{{selectedCrash.traffCntrlControl.control_id}}-{{selectedCrash.traffCntrlControl.description}}</span> -->
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.traffic__controls"
+                      [(ngModel)]="selectedCrash.traffCntrlControl" optionLabel="description" [filter]="true"
+                      dataKey="control_id" showClear="true"></p-dropdown>
+                  </div>
+
+                  <!--NEW COLUMN: Roadway Part -->
+                  <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h4>Roadway Part:</h4>
+                    <p-dropdown placeholder="Select One" [options]="allowedValues.rdwy_part"
+                      [(ngModel)]="selectedCrash.road_part" optionLabel="description" [filter]="true" dataKey="part_id"
+                      showClear="true"></p-dropdown>
+                  </div>
+
+                </div>
+              </p-fieldset>
+            </div>
+            <!-- DRIVER -->
+            <div class="p-col-12">
+              <p-fieldset legend="Driver" [toggleable]="true" collapsed="true">
+
+                <div *ngFor="let p of selectedCrash.persons; index as i">
+                  <div class="p-grid p-align-start vertical-container"
+                    *ngIf="p.typePersonType.Person_Type_ID===1 || p.typePersonType.Person_Type_ID===5">
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Age</label></h4>
+                      <h4>{{p.age}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Driver Type</label></h4>
+                      <h4>{{p.typePersonType.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Gender</label></h4>
+                      <h4>{{p.genderPersonGender.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Ethnicity</label></h4>
+                      <h4>{{p.ethnPersonEthn.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Alcohol</label></h4>
+                      <h4>{{p.alchPersonAlcohol.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Drug</label></h4>
+                      <h4>{{p.drugPersonDrug.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Injury</label></h4>
+                      <h4>{{p.injuryPersonInjury.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Helmet</label></h4>
+                      <h4>{{p.hlmtPersonHelmet.Description}}</h4>
+                    </div>
+
+                  </div>
+                </div>
+
+              </p-fieldset>
+            </div>
+            <!-- PEDESTRIANS -->
+            <div class="p-col-12">
+              <p-fieldset legend="Pedestrian" [toggleable]="true" collapsed="true">
+
+                <div *ngFor="let p of selectedCrash.persons; index as i">
+                  <div class="p-grid p-align-start vertical-container" *ngIf="p.typePersonType.Person_Type_ID===4 ">
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Age</label></h4>
+                      <h4>{{p.age}}</h4>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Gender</label></h4>
+                      <h4>{{p.genderPersonGender.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Ethnicity</label></h4>
+                      <h4>{{p.ethnPersonEthn.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Alcohol</label></h4>
+                      <h4>{{p.alchPersonAlcohol.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Drug</label></h4>
+                      <h4>{{p.drugPersonDrug.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Injury</label></h4>
+                      <h4>{{p.injuryPersonInjury.Description}}</h4>
+                    </div>
+                  </div>
+                </div>
+
+              </p-fieldset>
+            </div>
+            <!-- PEDALCYLCLIST -->
+            <div class="p-col-12">
+              <p-fieldset legend="Pedalcyclist" [toggleable]="true" collapsed="true">
+
+                <div *ngFor="let p of selectedCrash.persons; index as i">
+                  <div class="p-grid p-align-start vertical-container" *ngIf="p.typePersonType.Person_Type_ID===3">
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Age</label></h4>
+                      <h4>{{p.age}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Gender</label></h4>
+                      <h4>{{p.genderPersonGender.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Ethnicity</label></h4>
+                      <h4>{{p.ethnPersonEthn.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Alcohol</label></h4>
+                      <h4>{{p.alchPersonAlcohol.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Drug</label></h4>
+                      <h4>{{p.drugPersonDrug.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Injury</label></h4>
+                      <h4>{{p.injuryPersonInjury.Description}}</h4>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                      <h4><label>Helmet</label></h4>
+                      <h4>{{p.hlmtPersonHelmet.Description}}</h4>
+                    </div>
+                  </div>
+                </div>
+
+              </p-fieldset>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <p-tabPanel header="[C]harges">
+        <div class="p-col-12">
+          <div class="p-grid">
+            <div class="p-col-12">
+              <p-button icon="pi pi-plus" label="Add New" (click)="addCharge()" *ngIf="currentUser.group =='RW'">
+              </p-button>
+              <div class="p-col-12">
+
+                <div class="ui-g-12 ui-md-6 ui-lg-4" *ngFor="let charge of selectedCrash.chargess; index as i">
+
+                  <app-charges [(activeCharge)]="charge"></app-charges>
+                  <p-button icon="pi pi-trash" (click)="removeCharge(i)"></p-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+
+
+      <p-tabPanel header="[U]nits">
+        <div class="p-col-12">
+          <div class="p-grid">
+            <div class="p-col-12">
+              <p-button icon="pi pi-plus" label="Add New" (click)="addUnit()" *ngIf="currentUser.group =='RW'">
+              </p-button>
+              <div class="p-col-12">
+                <div class="ui-g-12 ui-md-6 ui-lg-4" *ngFor="let unit of selectedCrash.units; index as i">
+                  <app-unit [(activeUnit)]="unit"></app-unit>
+                  <p-button icon="pi pi-trash" (click)="removeUnit(i)"></p-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </p-tabPanel>
+
+      <p-tabPanel header="[P]eople">
+        <div class="p-col-12">
+          <div class="p-grid">
+            <div class="p-col-12">
+              <p-button icon="pi pi-plus" label="Add New" (click)="addPerson()" *ngIf="currentUser.group =='RW'">
+              </p-button>
+              <div class="p-col-12">
+                <div class="ui-g-12 ui-md-6 ui-lg-4" *ngFor="let person of selectedCrash.persons; index as i">
+                  <app-person [(activePerson)]="person"></app-person>
+                  <p-button icon="pi pi-trash" (click)="removePerson(i)"></p-button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </p-tabPanel>
+
+      <p-tabPanel header="[G]IS Analysis">
+
+        <div class="">
+          <div class="p-col-12" *ngFor="let gisInfo of selectedCrash.gisAnalysiss; index as i">
+            <app-gis-analysis [(gis_data)]="gisInfo"></app-gis-analysis>
+
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <p-tabPanel header="Crash [T]yping">
+        <div class="">
+          <div class="ui-g-12 ui-md-6 ui-lg-4">
+            <label for="in_progress">
+              <h4>Progress</h4>
+            </label>
+            <input id="in_progress" [(ngModel)]="selectedCrash.progress" type="number" style="width:100%">
+          </div>
+
+          <div class="ui-g-12 ui-md-6 ui-lg-8">
+            <label for="in_notes">
+              <h4>Notes</h4>
+            </label>
+            <textarea id="in_notes" [(ngModel)]="selectedCrash.notes" style="width:100%"></textarea>
+          </div>
+
+          <div class="p-col-12">
+            <div class="p-grid p-align-start vertical-container">
+              <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <label for="in_latitude">Latitude</label>
+                <input id="in_latitude" [(ngModel)]="selectedCrash.latitude" type="number" style="width:100%"
+                  (change)="locationUpdated()">
+              </div>
+              <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <label for="in_longitude">Longitude</label>
+                <input id="in_longitude" [(ngModel)]="selectedCrash.longitude" type="number" style="width:100%"
+                  (change)="locationUpdated()">
+              </div>
+              <div class="p-col-12">
+                <p-gmap #gmap1 [style]="{'width':'100%','height':'400px', 'margin-bottom': '1em'}"
+                  (onMapReady)="setMap($event)" [options]="mapOptions" [overlays]="mapOverlays"
+                  (onOverlayDragEnd)="dragEnd($event)"></p-gmap>
+              </div>
+            </div>
+          </div>
+          <div class="p-col-12" *ngFor="let crashTypeInfo of selectedCrash.crashTypes; index as i">
+            <app-crash-typing [(currentCrashType)]="crashTypeInfo"></app-crash-typing>
+          </div>
+
+        </div>
+
+
+      </p-tabPanel>
+
+      <!-- <p-tabPanel header="Counter [M]easures">
+        <div class="p-grid p-align-start vertical-container">
+          <div class="ui-lg-12">
+           <app-countermeasures></app-countermeasures>
+          </div>
+        </div>
+
+      </p-tabPanel> -->
+
+
+    </p-tabView>
+
+  </div>
+</div>

@@ -1,0 +1,123 @@
+<div class="p-col-12">
+  <button pButton type="button" label="Add User" (click)="showAddUser($event)"></button>
+</div>
+<div class="p-col-12">
+  <p-table #dt1 [value]="all_users" dataKey="id" editMode="row" [paginator]="true" 
+  [rows]="10" [resizableColumns]="true" [lazy]="false"
+    columnResizeMode="expand" [globalFilterFields]="['id','username','role']">
+    <ng-template pTemplate="caption">
+      <div style="text-align: right">
+        <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+        <input type="text" pInputText size="50" placeholder="Global Filter"
+          (input)="dt1.filterGlobal($event.target.value, 'contains')" style="width:auto">
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pResizableColumn>id</th>
+        <th pResizableColumn>username </th>
+        <th pResizableColumn>password</th>
+        <th pResizableColumn>role</th>
+        <th pResizableColumn>createdAt</th>
+        <th pResizableColumn>updatedAt</th>
+        <th pResizableColumn>logoutActive</th>
+        <th style="width:12em">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+      <tr [pEditableRow]="rowData">
+        <td>
+          {{rowData.id}}
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="rowData.username" required>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{rowData.username}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          {{rowData.password}}
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="rowData.role" required>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{rowData.role}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          {{rowData.createdAt}}
+        </td>
+        <td>
+          {{rowData.updatedAt}}
+        </td>
+        <td>
+
+          {{rowData.logoutActive}}
+
+       
+        </td>
+
+        <td style="text-align:center">
+          <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info"></button>
+          <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success"
+            style="margin-right: .5em" (click)="updateUser(rowData)"></button>
+          <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger"></button>
+          <button pButton type="button" icon="pi pi-trash" class="ui-button-danger"
+            (click)="deleteUser(rowData, ri)"></button>
+          <button pButton type="button" icon="pi pi-lock" class="ui-button-danger"
+            (click)="changepassword_step1(rowData, ri)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+
+<p-dialog header="Add User" [(visible)]="add_user" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <label for="u1">
+    <h4>Username</h4>
+  </label>
+  <input type="text" id="u1" [(ngModel)]="new_user" pInputText>
+  <label for="new_p">
+    <h4>Password</h4>
+  </label>
+  <input type="text" pInputText id="new_p" [(ngModel)]="new_password">
+  <label for="new_r">
+    <h4>Role</h4>
+  </label>
+  <input type="text" pInputText id="new_r" [(ngModel)]="new_role">
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="addUser($event)" label="Add"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="add_user=false" label="Do Nothing"
+      class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog header="Delete User" [(visible)]="delete_user_ready" [style]="{width: '30vw'}" [baseZIndex]="10000">
+  Confirm delete <h2>{{delete_user.username}}</h2>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="finalDeleteUser($event)" label="Confirm"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="delete_user_ready=false" label="Do Nothing"></button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog header="Change Password" [(visible)]="showChangePassword" [style]="{width: '30vw'}" [baseZIndex]="10000">
+  New password for {{user_change_password.username}}
+  <label for="new_p">
+    <h4>Password</h4>
+  </label>
+  <input type="text" pInputText id="new_p" [(ngModel)]="edit_password">
+
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="finalChangePassword($event)" label="Confirm"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="showChangePassword=false" label="Do Nothing"></button>
+  </p-footer>
+</p-dialog>

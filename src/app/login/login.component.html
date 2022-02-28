@@ -1,0 +1,54 @@
+<!-- <div class="p-grid">
+  <div class="ui-g-6 ui-md-4">
+
+  <button type="text" pButton label="Login" (click)="showLogin()" ></button>
+  
+  </div>
+  <div class="ui-g-4 ui-md-4 ui-md-offset-4">
+
+    <h1>TXDOT Crash Data Web-Tool</h1>
+    </div>
+
+</div> -->
+
+
+
+<!-- <p-dialog #op1  class="disable-scroll"  [modal]="true" [(visible)]="true"  header="Login" [blockScroll]="true" >
+  <div class="p-grid">
+    <div class="ui-g-12 ui-md-6 ui-lg-6">
+      <label for="float-input-username" >Username</label>
+      <input id="float-input-username" type="text"  pInputText [(ngModel)]="username"  >
+      
+    </div>
+    <div class="ui-g-12 ui-md-6 ui-lg-6">
+        <label for="float-input-password" >Password</label>
+      <input id="float-input-password" type="password" pInputText [(ngModel)]="password"  >
+      
+    </div>
+    <button type="text" pButton label="Submit" (click)="doLogin()"></button>
+  </div>
+</p-dialog> -->
+<div style="width:500px; position:fixed; top:50%; left:50%; transform: translate(-50%, -50%); padding: 10px;">
+<p-card >
+
+  <p-header>
+    <div style="text-align:center;padding: 50;"><h2 style="text-align: center;">Crash Data Analysis and Visualization Application </h2>
+      A collaboration between Texas A&M AgriLife Research at El Paso and Universty of Texas at El Paso developed for Texas Department of Transportation in 2020.
+    </div>    
+  </p-header>
+  <span style="font-style:italic; font-size: small;">Please login to start or after one hour of last login.</span>
+  <div class="ui-g-12 ui-md-12 ui-lg-12">
+    <label for="float-input-username">Username</label>
+    <input id="float-input-username" type="text" pInputText [(ngModel)]="username" required >
+  </div>
+  <div class="ui-g-12 ui-md-12 ui-lg-12">
+    <label for="float-input-password">Password</label>
+    <input id="float-input-password" type="password" pInputText [(ngModel)]="password" required>
+  </div>
+  <p-footer>
+    <button type="text" pButton label="Submit" (click)="doLogin()"></button>
+  </p-footer>
+
+  
+</p-card>
+</div>

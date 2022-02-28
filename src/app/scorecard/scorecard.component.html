@@ -1,0 +1,153 @@
+
+<div class="ui-g-12 ui-lg-12">
+
+  <p-scrollPanel>
+  <!-- GENERAL INFORMATION -->
+  <div class=" ui-g-12 ui-lg-3">
+
+    <p-card [style]="{height:'15em'}" header="General Information">
+      <hr>
+      <strong> Corridor:</strong> {{corridorScorecardData.data.cluster}}<br>
+      <strong> Length:</strong> {{corridorScorecardData.length}} miles<br>
+      <strong> Start:</strong> {{corridorScorecardData.corridor_start}} <br>
+      <strong> End:</strong> {{corridorScorecardData.corridor_end}} <br>
+
+      <strong> Type:</strong> {{corridorScorecardData.data.type}}<br>
+      <strong> County:</strong> {{corridorScorecardData.data.county}}<br>
+    </p-card>
+  </div>
+
+  <!-- ROADWAY ELEMENTS -->
+  <div class=" ui-g-12 ui-lg-3">
+
+    <p-card [style]="{height:'15em'}" header="Roadway Elements">
+      <hr>
+      <strong> Roadway:</strong> {{corridorScorecardData.data.crash_roadway_classification}}<br>
+      <strong>Travel Lanes:</strong> {{corridorScorecardData.data.crash_lane_number}}<br>
+      <strong> AADT</strong> (Median): {{corridorScorecardData.data.gis_avg_daily_traffic}}<br>
+    </p-card>
+  </div>
+
+  <!-- Actions Prior to Crash -->
+  <div class=" ui-g-12 ui-lg-3">
+
+    <p-card [style]="{height:'15em'}" header="Actions Prior to Crash">
+      <hr>
+      <strong> Drug Use:</strong> {{corridorScorecardData.data.person_drug_involved_positive}}%<br>
+      <strong> Alcohol Use:</strong> {{corridorScorecardData.data.person_alcohol_involved_positive}}%<br>
+    </p-card>
+  </div>
+
+  <!-- Conditions -->
+  <div class=" ui-g-12 ui-lg-3">
+
+    <p-card [style]="{height:'15em'}" header="Conditions">
+      <hr>
+      <strong> Classification</strong>: {{ corridorScorecardData.data.crash_roadway_classification_extra }}<br>
+      <br>
+      <strong>&mdash; Data within 300 ft. &mdash;</strong><br>
+      <strong> Transit Stops</strong>: {{corridorScorecardData.data.gis_transit_stops}}<br>
+      <strong> Parks</strong>: {{corridorScorecardData.data.gis_parks}}<br>
+      <strong> Schools</strong>: {{corridorScorecardData.data.gis_schools}}<br> 
+
+
+    </p-card>
+  </div>
+
+
+  <!-- History -->
+  <div class=" ui-g-12 ui-lg-4">
+
+    <p-card [style]="{height:'15em'}" header="Crash History">(2014 - 2018)
+      <hr>
+      <strong> Total Crashes:</strong> {{corridorScorecardData.data.total_crashes}}<br>
+      <strong>Fatal & Serious Crashes:</strong> {{corridorScorecardData.data.total_inj}}<br>
+      <strong>Total Hit and Run:</strong> {{corridorScorecardData.data.hit_run}}<br>
+    </p-card>
+  </div>
+
+
+  <!-- CRASH GROUPS -->
+  <div class=" ui-g-12 ui-lg-8">
+    <p-card [style]="{height:'15em'}">
+      <p-scrollPanel [style]="{height:'10em'}">
+
+        <div *ngIf="corridorScorecardData.data.type == 'Pedalcyclist'">
+          <p-table [value]="corridorScorecardData.data.pbcat_crash_group" [autoLayout]=true>
+            <ng-template pTemplate="header">
+              <tr>
+                <th><a href="http://www.pedbikeinfo.org/pbcat_us/bike_images.cfm" target="_blank">PBCAT Crash Groups</a></th>
+                <th>Count</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-group>
+              <tr>
+                <td>{{group.description}}</td>
+                <td>{{group.count}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+        </div>
+
+        <div *ngIf="corridorScorecardData.data.type == 'Pedestrian'">
+          <p-table [value]="corridorScorecardData.data.pbcat_crash_group" [autoLayout]=true>
+            <ng-template pTemplate="header">
+              <tr>
+                <th><a href="http://www.pedbikeinfo.org/pbcat_us/ped_images.cfm" target="_blank">PBCAT Crash Groups</a></th>
+                <th>Count</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-group>
+              <tr>
+                <td>{{group.description}}</td>
+                <td>{{group.count}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+        </div>
+
+
+      </p-scrollPanel>
+    </p-card>
+  </div>
+
+    <!-- COUNTERMEASURES -->
+    <div class=" ui-g-12 ui-lg-4">
+      <p-card [style]="{height:'15em'}">
+        <p-scrollPanel [style]="{height:'13em'}">
+          <p-table [value]="corridorScorecardData.countermeasures" >
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Countermeasures</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-counter>
+              <tr>
+                <td><a [attr.href]=counter.link target="_">{{counter.description}}</a></td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </p-scrollPanel>
+      </p-card>
+    </div>
+  
+  <!-- DATA BY YEAR -->
+  <div class=" ui-g-12 ui-lg-8">
+
+ 
+    <p-card [style]="{height:'15em'}">
+      <p-scrollPanel>
+         <p-chart type="horizontalBar" height="13em" width="100%" [data]="corridorScorecardData.chart_data.year_data" [options]="corridorScorecardData.chart_data.year_data.options"></p-chart>
+      </p-scrollPanel>
+     
+    </p-card>
+
+  </div>
+
+
+
+
+  </p-scrollPanel>
+</div>

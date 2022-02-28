@@ -1,0 +1,49 @@
+
+<!-- 
+<div>
+    <app-login></app-login>
+</div>
+
+<p-tabView>
+    <p-tabPanel header="MapView" leftIcon="pi pi-map-marker">
+        <div style="height: 702px; padding-top: 2px;">
+        <app-map-view></app-map-view>
+        </div>
+    </p-tabPanel>
+
+    <p-tabPanel header="Advanced Search" leftIcon="pi pi-home">
+
+        <div class="p-grid p-align-start vertical-container">
+            <div class ="ui-g-12 ui-md-12 ui-lg-12">
+                <app-leftbar></app-leftbar>
+                <!-- <div class = "ui-g-12 ui-md-12 ui-lg-12">
+                    <app-edit-crash></app-edit-crash>
+                </div> -->
+ <!--           </div>
+        </div>
+
+    </p-tabPanel>
+
+</p-tabView> -->
+
+<!--New Start page-->
+<p-toast></p-toast>
+<!-- <div *ngIf="!token||expired; else mainApp">
+    <app-login></app-login>
+</div> -->
+<ng-template #mainApp *ngIf="currentUser">
+  <app-map-view style="overflow: hidden;"></app-map-view>
+</ng-template>
+
+<!-- main app container -->
+<div class="container" >
+    <router-outlet></router-outlet>
+</div>
+<!-- credits -->
+<div class="text-center mt-4">
+
+<p style="font-size: small;bottom: -10px;position: absolute;">
+        &copy; 2020 Texas A&M AgriLife and UTEP
+</p>
+</div>
+<!-- <router-outlet></router-outlet> -->

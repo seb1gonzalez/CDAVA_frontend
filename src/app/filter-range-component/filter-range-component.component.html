@@ -1,0 +1,28 @@
+<div *ngIf="filter_element['render'] != ''">
+  <h3>{{filter_element.label}}</h3>
+  <div class="p-grid" *ngIf="filter_element['render']=='range'">
+    <h4 class="p-col-5">{{realValues[0]}}</h4>
+    <h4 class="p-col-2"> &mdash;</h4>
+    <h4 class="p-col-5" style="text-align:end">{{realValues[1]}}</h4>
+    <p-slider class="p-col-12" [(ngModel)]="rangeValues" [range]="true" [range]="true"
+      (onChange)="rangeOnChange($event)" (onSlideEnd)="rangeOnSlideEnd($event)">
+    </p-slider>
+  </div>
+
+  <div class="p-grid" *ngIf="filter_element['render']=='list'">
+    <p-multiSelect class= "p-col-12" [options]="uniqueElements" [(ngModel)]="selectedElements" 
+  (onChange)="selectOnChange($event)"   optionLabel="label"></p-multiSelect>
+  </div>
+
+  <div *ngIf="filter_element['render']=='daterange'" style="width: 100%;">
+    Start:
+    <p-calendar [(ngModel)]="fromDate" [readonlyInput]="true" [minDate]="minDateValue" [maxDate]="toDate"
+      [yearNavigator]="true" (onClose)="dateOnChange($event)" [monthNavigator]="true" yearRange="2014:2018">
+    </p-calendar>
+    <br>
+    End:&nbsp;&nbsp;
+    <p-calendar [(ngModel)]="toDate" [readonlyInput]="true" [minDate]="fromDate" [maxDate]="maxDateValue"
+      [yearNavigator]="true" (onClose)="dateOnChange($event)" [monthNavigator]="true" yearRange="2014:2018">
+    </p-calendar>
+  </div>
+</div>

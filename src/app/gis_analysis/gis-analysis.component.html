@@ -1,0 +1,360 @@
+<div class="p-grid p-align-start vertical-container">
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_roadway_width">Roadway Width</label>
+    <input
+      id="in_gis_data_roadway_width"
+      [(ngModel)]="gis_data.roadway_width"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_avg_daily_traffic">Average Daily Traffic</label>
+    <input
+      id="in_gis_data_avg_daily_traffic"
+      [(ngModel)]="gis_data.avg_daily_traffic"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_avg_trk_traff">Average Daily Truck Traffic</label>
+    <input
+      id="in_gis_data_avg_trk_traff"
+      [(ngModel)]="gis_data.avg_trk_traff"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_paved_shldr_width">Paved Shoulder Width</label>
+    <input
+      id="in_gis_data_paved_shldr_width"
+      [(ngModel)]="gis_data.paved_shldr_width"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_population">Population Density (per sq.mi.)</label>
+    <input
+      id="in_gis_data_population"
+      [(ngModel)]="gis_data.population"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_employment">Employment Density (per sq.mi.)</label>
+    <input
+      id="in_gis_data_employment"
+      [(ngModel)]="gis_data.employment_dens"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_commuter_modeshare">Commuter Modeshare</label>
+    <input
+      id="in_gis_data_commuter_modeshare"
+      [(ngModel)]="gis_data.commuter_modeshare"
+      placeholder="No data"
+      type="text"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_transit_stops">Transit Stops within 300ft.</label>
+    <input
+      id="in_gis_data_transit_stops"
+      [(ngModel)]="gis_data.transit_stops"
+      placeholder="No data"
+      type="text"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_transit_stop_dist"
+      >Distance to Nearest Transit Stop (meters)</label
+    >
+    <input
+      id="in_gis_data_transit_stop_dist"
+      [(ngModel)]="gis_data.transit_stop_dist"
+      placeholder="No data"
+      type="text"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_schools">Schools within 300ft.</label>
+    <input
+      id="in_gis_data_schools"
+      [(ngModel)]="gis_data.schools"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_school_dist"
+      >Distance to Nearest School (meters)</label
+    >
+    <input
+      id="in_gis_data_school_dists"
+      [(ngModel)]="gis_data.school_dist"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_parks">Parks within 300ft.</label>
+    <input
+      id="in_gis_data_parks"
+      [(ngModel)]="gis_data.parks"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_park_dist">Distance to Nearest Park (meters)</label>
+    <input
+      id="in_gis_data_park_dist"
+      [(ngModel)]="gis_data.park_dist"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_social_vul_index">Social Vulnerability Index</label>
+    <input
+      id="in_gis_data_social_vul_index"
+      [(ngModel)]="gis_data.social_vul_index"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_bicycle_facil_pres"
+      >Bicycle Facility Presence</label
+    >
+    <input
+      id="in_gis_data_bicycle_facil_pres"
+      [(ngModel)]="gis_data.bike_facil_pres"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_bike_facil_dists"
+      >Distance to Nearest<br />Bicycle Facility (meters)</label
+    >
+    <input
+      id="in_gis_data_bike_facil_dists"
+      [(ngModel)]="gis_data.bike_facil_dist"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_lane_width">Lane Width</label>
+    <input
+      id="in_gis_data_lane_width"
+      [(ngModel)]="gis_data.lane_width"
+      placeholder="No data"
+      type="number"
+      style="width:100%"
+    />
+  </div>
+
+  <!-- <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_bike__lane_paved_shldr_width">Bike Lane Paved Shoulder Width</label>
+    <input id="in_gis_data_bike__lane_paved_shldr_width" [(ngModel)]="gis_data.bike__lane_paved_shldr_width" placeholder="No data" type="number" style="width:100%">
+</div>
+ -->
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_development_type">Development Type</label>
+    <input
+      id="in_gis_data_development_type"
+      [(ngModel)]="gis_data.development_type"
+      placeholder="No data"
+      type="text"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_Vehicle_own">Vehicle Ownership</label>
+    <input
+      id="in_gis_data_Vehicle_own"
+      [(ngModel)]="gis_data.vehicle_ownership"
+      placeholder="No data"
+      type="text"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_speed">Max. Speed</label>
+    <input
+      id="in_gis_data_speed"
+      [(ngModel)]="gis_data.speed"
+      placeholder="No data"
+      type="text"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_strava_bike">Strava Bicyclist Trips</label>
+    <input
+      id="in_gis_data_strava_bike"
+      [(ngModel)]="gis_data.strava_bike"
+      placeholder="No data"
+      type="text"
+      style="width:100%"
+    />
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_gis_data_strava_ped">Strava Pedestrian Trips</label>
+    <input
+      id="in_gis_data_strava_ped"
+      [(ngModel)]="gis_data.strava_ped"
+      placeholder="No data"
+      type="text"
+      style="width:100%"
+    />
+  </div>
+
+  <!-- 
+      <div class="ui-g-12 ui-md-6 ui-lg-4">
+        <label for="in_gis_data_access_control">Controlled access facility</label>
+        <input id="in_gis_data_access_control" [(ngModel)]="gis_data.access_control" placeholder="No data" type="text" style="width:100%">
+      </div> -->
+
+  <!-- 
+  
+    @Type(() => school_types)
+    schoolTypeGis:school_type_gis[];
+    
+ -->
+
+  <!--  
+ <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <h4>School Type:</h4>
+    PENDING...
+    <p-dropdown 
+      placeholder="Select One" 
+      [options]="allowedValues.school_typess" 
+      [(ngModel)]="gis_data.schoolTypeGis"
+      optionLabel="Description" 
+      [filter]="true" 
+      dataKey="Median_Type_ID" 
+      showClear="true">
+  </p-dropdown>
+</div> -->
+
+  <div class="ui-g-12 ui-md-12 ui-lg-12">
+    <div class="ui-g-12 ui-md-6 ui-lg-4">
+      Median Type:
+      <p-dropdown
+        placeholder="Select One"
+        [options]="allowedValues.median_types"
+        [(ngModel)]="gis_data.medianType"
+        optionLabel="Description"
+        [filter]="true"
+        dataKey="Median_Type_ID"
+        showClear="true"
+      >
+      </p-dropdown>
+    </div>
+
+    <!--     
+     
+     <div class="ui-g-12 ui-md-12 ui-lg-6">
+        <h4>Sidewalk Presence:</h4>
+        <p-dropdown 
+          placeholder="Select One" 
+          [options]="allowedValues.sidewalk_presences" 
+          [(ngModel)]="gis_data.sidewalkPresence"
+          optionLabel="Description" 
+          [filter]="true" 
+          dataKey="Sdwlk_Pres_ID" 
+          showClear="true">
+      </p-dropdown>
+    </div>
+ -->
+
+    <!-- 
+  <div class="ui-g-12 ui-md-12 ui-lg-6">
+    <h4>Freight Network:</h4>
+    <p-dropdown 
+      placeholder="Select One" 
+      [options]="allowedValues.freight_networks" 
+      [(ngModel)]="gis_data.freightNet"
+      optionLabel="Description" 
+      [filter]="true" 
+      dataKey="Freight_Net_ID" 
+      showClear="true">
+  </p-dropdown>
+</div> -->
+
+    <!-- <div class="ui-g-12 ui-md-12 ui-lg-6">
+    <h4>Marked Crosswalks:</h4>
+    <p-dropdown 
+      placeholder="Select One" 
+      [options]="allowedValues.marked_crosswalkss" 
+      [(ngModel)]="gis_data.markedCrosswalk"
+      optionLabel="Description" 
+      [filter]="true" 
+      dataKey="Marked_Crswlk_ID" 
+      showClear="true">
+  </p-dropdown>
+</div> -->
+
+    <div class="ui-g-12 ui-md-6 ui-lg-4">
+      Street Parking:
+      <p-dropdown
+        placeholder="Select One"
+        [options]="allowedValues.street_parkings"
+        [(ngModel)]="gis_data.strParking"
+        optionLabel="Description"
+        [filter]="true"
+        dataKey="Street_Parking_ID"
+        showClear="true"
+      >
+      </p-dropdown>
+    </div>
+
+    
+  </div>
+</div>
+<!-- EOF -->

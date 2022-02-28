@@ -1,0 +1,161 @@
+<div class="p-grid p-align-start vertical-container">
+  <!--crash_type_number  -->
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_crash_type_number">Crash Type Number</label>
+    <input id="in_crash_type_number" [(ngModel)]="currentCrashType.crash_type_number" placeholder="Input a number"
+      type="number" style="width:100%">
+  </div>
+  <!-- crash_type_description -->
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_crash_type_desc">Crash Type Description</label>
+    <input id="in_crash_type_desc" [(ngModel)]="currentCrashType.crash_type_description" placeholder="Input text"
+      type="text" style="width:100%">
+  </div>
+  <!-- crash_group_number -->
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_crash_group_number">Crash Group Number</label>
+    <input id="in_crash_group_number" [(ngModel)]="currentCrashType.crash_group_number" placeholder="Input a number"
+      type="number" style="width:100%">
+  </div>
+  <!--Crash Group Description -->
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_pbcat_group_desc">Crash Group Description</label>
+    <input id="in_pbcat_group_desc" [(ngModel)]="currentCrashType.crash_group_description" placeholder="Input text"
+      type="text" style="width:100%">
+  </div>
+
+  <!--Crash Location Description -->
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_pbcat_crash_location_desc">Crash Location Description</label>
+    <input id="in_pbcat_crash_location_desc" [(ngModel)]="currentCrashType.crash_loc_desc" placeholder="Input text"
+      type="text" style="width:100%">
+  </div>
+
+ 
+  <!--Motorist Maneuver-->
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_pbcat_motorist_maneuver">Motorist Maneuver</label>
+    <input id="in_pbcat_motorist_maneuver" [(ngModel)]="currentCrashType.motorist_maneuver" placeholder="Input text"
+      type="text" style="width:100%">
+  </div>
+
+  <!--Motorist Direction-->
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_pbcat_motorist_direction">Motorist Direction</label>
+    <input id="in_pbcat_motorist_direction" [(ngModel)]="currentCrashType.motorist_direction" placeholder="Input text"
+      type="text" style="width:100%">
+  </div>
+
+  <!--Leg Intersection-->
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_pbcat_leg_intersection">Leg Intersection</label>
+    <input id="in_pbcat_leg_intersection" [(ngModel)]="currentCrashType.leg_intersection" placeholder="Input text"
+      type="text" style="width:100%">
+  </div>
+
+  <!--Crash Type Expanded-->
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_pbcat_crash_type_expanded">Crash Type Expanded</label>
+    <input id="in_pbcat_crash_type_expanded" [(ngModel)]="currentCrashType.crash_type_expanded" placeholder="Input text"
+      type="text" style="width:100%">
+  </div>
+
+  <!--Crash Group Expanded-->
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_pbcat_crash_group_expanded">Crash Group Expanded</label>
+    <input id="in_pbcat_crash_group_expanded" [(ngModel)]="currentCrashType.crash_group_expaned"
+      placeholder="Input text" type="text" style="width:100%">
+  </div>
+
+  <!--Crash Location Description-->
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_pbcat_crash_location_Desc">Crash Location Description</label>
+    <input id="in_pbcat_crash_location_Desc" [(ngModel)]="currentCrashType.crash_loc_desc" placeholder="Input text"
+      type="text" style="width:100%">
+  </div>
+
+
+
+  <!--Scenario-->
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_pbcat_scenario">Scenario</label>
+    <input id="in_pbcat_scenario" [(ngModel)]="currentCrashType.scenario" placeholder="Input text" type="text"
+      style="width:100%">
+  </div>
+
+  <div class="p-col-12">
+    <p-fieldset legend="Pedestrian Information" [toggleable]="true" collapsed="true">
+
+      
+  <!--Pedestrian Position Description -->
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+      <label for="in_pbcat_pedestrian_pos_desc">Pedestrian Position Description</label>
+      <input id="in_pbcat_pedestrian_pos_desc" [(ngModel)]="currentCrashType.pos_description" placeholder="Input text"
+        type="text" style="width:100%">
+    </div>
+  
+
+       <!--Pedestrian Direction-->
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+      <label for="in_pbcat_pedestrian_direction">Pedestrian Direction</label>
+      <input id="in_pbcat_pedestrian_direction" [(ngModel)]="currentCrashType.pedestrian_direction"
+        placeholder="Input text" type="text" style="width:100%">
+    </div>
+  
+  
+
+       <!--Unique Pedestrian Characteristics-->
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <label for="in_pbcat_ped_charac">Unique Pedestrian Characteristics</label>
+    <input id="in_pbcat_ped_charac" [(ngModel)]="currentCrashType.ped_charac" placeholder="Input text" type="text"
+      style="width:100%">
+  </div>
+
+
+    </p-fieldset>
+  </div>
+
+
+
+
+  <div class="p-col-12">
+    <p-fieldset legend="Bicyclist Information" [toggleable]="true" collapsed="true">
+
+      <!--Bicyclist Position-->
+      <div class="ui-g-12 ui-md-6 ui-lg-4">
+        <label for="in_pbcat_bicyclist_pos">Bicyclist Position</label>
+        <input id="in_pbcat_bicyclist_pos" [(ngModel)]="currentCrashType.bicyclist_position" placeholder="Input text"
+          type="text" style="width:100%">
+      </div>
+
+
+      <!--Bicyclist Direction-->
+      <div class="ui-g-12 ui-md-6 ui-lg-4">
+        <label for="in_pbcat_bike_direction">Bicyclist Direction</label>
+        <input id="in_pbcat_bike_direction" [(ngModel)]="currentCrashType.bicyclist_direction" placeholder="Input text"
+          type="text" style="width:100%">
+      </div>
+
+    </p-fieldset>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

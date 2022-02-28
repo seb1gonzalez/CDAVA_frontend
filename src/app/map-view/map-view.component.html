@@ -1,0 +1,137 @@
+<div class="ui-g-10 ui-lg-11" style="top: .2em; position:absolute;">
+
+
+  <div class="ui-g-12 ui-lg-1" style="width: fit-content;">
+    <button pButton type="button" (click)="displaySidebar=true" class="ui-button-text-icon-primary"
+      label="Filter Crashes"></button>&nbsp;
+  </div>
+
+
+  <div class="ui-g-12 ui-lg-1" style="width: fit-content;">
+    <div *ngIf="clustermap_on">
+      <button pButton type="button" (click)="showHideClustermap()" class=" ui-button-danger"
+        label="Hide Crashes"></button>
+    </div>
+    <div *ngIf="!clustermap_on">
+      <button pButton type="button" (click)="showHideClustermap()" class=" ui-button-success"
+        label="Show Crashes"></button>
+    </div>
+
+  </div>
+  <div class="ui-g-12 ui-lg-1" style="width: fit-content;">
+    <button pButton type="button" (click)="showTable($event)" class="ui-button-text-icon-primary"
+      label="Crash Table"></button>&nbsp;
+  </div>
+
+  <div class="ui-g-12 ui-lg-1" style="width: fit-content;">
+
+    <div *ngIf="corridor_on">
+      <button pButton type="button" (click)="showHideCorridors()" class=" ui-button-danger"
+        label="Hide Corridors"></button>
+    </div>
+    <div *ngIf="!corridor_on">
+      <button pButton type="button" (click)="showHideCorridors()" class=" ui-button-success"
+        label="Show Corridors"></button>
+    </div>
+
+  </div>
+  <div class="ui-g-12 ui-lg-1" style="width: fit-content;">
+    <button pButton type="button" (click)="showCorridorTable()" class=" ui-button-primary"
+      label="Corridors Table"></button>
+  </div>
+
+  <!-- <button pButton type="button" (click)="displayLogin=true" class="ui-button-success" label="Login"
+      style="position: absolute; right:10px"></button> -->
+  <div class="ui-g-12 ui-lg-1" style="width: fit-content;">
+    <a (click)="logout($event)"><span class="pi pi-power-off" style="font-size: 2em" title="Logout"></span></a>
+    <a (click)="display_change_password = true"><span class="pi pi-users" style="font-size: 2em" title="Change Password"></span></a>
+  </div>
+
+</div>
+
+
+
+<div class="ui-g-10 ui-lg-10" style="position: absolute; top: 3em;">
+  <p-gmap #gmap [options]="mapOptions" [style]="mapStyle" (onMapReady)="createMap($event)"></p-gmap>
+</div>
+
+<p-dialog modal= "true" position="top" header="Change Password" [(visible)]="display_change_password" [style]="{width: '200px'}" showHeader="false" >
+  <label for="old_p">
+    <h4>Old Password</h4>
+  </label>
+  <input type="password" id="old_p" [(ngModel)]="old_password" pInputText>
+    <label for="new_p">
+      <h4>New Password</h4>
+    </label>
+    <input  type="password" pPassword id="new_p" [(ngModel)]="new_password" >
+    <button pButton type="button" (click)="change_password($event)" label= "Change"> </button>
+</p-dialog>
+
+
+
+<p-sidebar [(visible)]="displaySidebar" position="left" [style]="{width:'450px'}" modal="false" dismissible="false">
+  <h3>Filters</h3>
+  <hr>
+  <p-scrollPanel [style]="filterStyle">
+    <app-filters></app-filters>
+  </p-scrollPanel>
+
+</p-sidebar>
+
+
+<p-dialog [(visible)]="displayTable" closable="true" closeOnEscape="true">
+  <p-scrollPanel [style]="tableStyle">
+    <app-leftbar></app-leftbar>
+  </p-scrollPanel>
+</p-dialog>
+
+<p-dialog [(visible)]="displayCrash" closable="true" closeOnEscape="true" [style]="crashStyle">
+  <p-scrollPanel [style]="crashStyleScroll">
+    <app-edit-crash></app-edit-crash>
+  </p-scrollPanel>
+</p-dialog>
+
+
+<p-dialog header="Corridors" [(visible)]="displayCorridorTable" [style]="{width: '35vw'}">
+
+  <p-table #dt [autoLayout]=true [value]="corridorTable" [globalFilterFields]="['cluster_name','cluster_type']"
+    selectionMode="single" (onRowSelect)="getScorecardData('a','b',$event)">
+    <ng-template pTemplate="caption">
+      <div style="text-align: left">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input type="text" pInputText size="50" placeholder="Global Filter"
+          (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+      </div>
+    </ng-template>
+  
+    <ng-template pTemplate="header">
+      <tr>
+        <th [pSortableColumn]="'cluster_name'">Corridor Data</th>
+        <th [pSortableColumn]="'cluster_type'">Corridor Type</th>
+
+      </tr>
+       
+      
+    </ng-template>
+    <ng-template pTemplate="body" let-corridor let-rowIndex="rowIndexCorridors">
+      <tr [pSelectableRow]="corridor" [pSelectableRowIndex]="rowIndexCorridors">
+
+        <td title="{{corridor['cluster_name']}}" style="width:60%"> {{corridor['cluster_name_UI']}} </td>
+        <td title="{{corridor['cluster_type']}}" style="width:20%"> {{corridor['cluster_type_UI']}} </td>
+      </tr>
+
+    </ng-template>
+  </p-table>
+
+</p-dialog>
+
+
+
+<div *ngIf=scorecardData.ready>
+  <p-dialog header="Corridor Report Card" [(visible)]="scorecardData.ready" closable="true" closeOnEscape="true"
+    [style]="{width: '50%'}" >
+    <p-scrollPanel [style]="scorecardStyle">
+      <app-scorecard [corridorScorecardData]="scorecardData" style="width: 100%; height: 100%;"></app-scorecard>
+    </p-scrollPanel>
+  </p-dialog>
+</div>
